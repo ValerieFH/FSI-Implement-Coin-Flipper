@@ -1,27 +1,60 @@
-// TODO: Declare any global variables we need
+let headCount = 0
+let tailCount = 0
 
+//TODO: refactor to use functions
 
 document.addEventListener('DOMContentLoaded', function () {
-    // This is just a sanity check to make sure your JavaScript script is getting loaded
-    // You can remove it once you see it in your browser console in the developer tools
-    console.log('Hi')
 
-    // TODO: Add event listener and handler for flip and clear buttons
+    document.querySelector('#flip').addEventListener('click', function(e){
+        if (Math.random() > 0.5) {
+            console.log('heads')
+            let pennyFace = document.querySelector('#penny')
+            pennyFace.src = "assets/images/penny-heads.jpg"
+            pennyFace.alt = "2005 Penny, head side"
 
-    // Flip Button Click Handler
-        // TODO: Determine flip outcome
-        // TODO: Update image and status message in the DOM
+            document.querySelector('#message').textContent = "You Flipped Heads!"
 
-        // Update the scorboard
-        // TODO: Calculate the total number of rolls/flips
-        // Make variables to track the percentages of heads and tails
-        // TODO: Use the calculated total to calculate the percentages
-        // HINT: Make sure not to divide by 0! (if total is 0, percent will be 0 as well)
-        // TODO: Update the display of each table cell
+            headCount++
 
+            document.querySelector('#heads').textContent = headCount
+            document.querySelector('#heads-percent').textContent = Math.round(headCount/(headCount+tailCount) * 100) + '%'
+            document.querySelector('#tails-percent').textContent = Math.round(tailCount/(headCount+tailCount) * 100) + '%'
+                } else {
+            console.log('tails')
+            let pennyFace = document.querySelector('#penny')
+            pennyFace.src = "assets/images/penny-tails.jpg"
+            pennyFace.alt = "2005 Penny, head side"
 
-    // Clear Button Click Handler
-        // TODO: Reset global variables to 0
-        // TODO: Update the scoreboard (same logic as in flip button click handler)
+            document.querySelector('#message').textContent = "You Flipped Tails!"
+
+            tailCount++
+
+            document.querySelector('#tails').textContent = tailCount
+            document.querySelector('#heads-percent').textContent = Math.round(headCount/(headCount+tailCount) * 100) + '%'
+            document.querySelector('#tails-percent').textContent = Math.round(tailCount/(headCount+tailCount) * 100) + '%'
+        }
+        // Flip Button Click Handler
+            // TODO: Update image and status message in the DOM
+    
+            // Update the scorboard
+            // TODO: Calculate the total number of rolls/flips
+            // Make variables to track the percentages of heads and tails
+            // TODO: Use the calculated total to calculate the percentages
+            // HINT: Make sure not to divide by 0! (if total is 0, percent will be 0 as well)
+            // TODO: Update the display of each table cell
+    })
+
+    document.querySelector('#clear').addEventListener('click', function(e){
+        // Clear Button Click Handler
+            // TODO: Reset global variables to 0
+            headCount = 0
+            tailCount = 0
+            document.querySelector('#message').textContent = "Play Again!"
+            // TODO: Update the scoreboard (same logic as in flip button click handler)
+            document.querySelector('#heads').textContent = headCount
+            document.querySelector('#tails').textContent = tailCount
+            document.querySelector('#heads-percent').textContent = '0%'
+            document.querySelector('#tails-percent').textContent = '0%'
+    })
 
 })
